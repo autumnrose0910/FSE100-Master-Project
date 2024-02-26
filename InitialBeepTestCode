@@ -1,0 +1,5 @@
+display('Press kill switch to stop sound')
+while brick.TouchPressed(1) == 0
+    brick.playTone(600,200,100);
+end
+display('Sound stopped!')
