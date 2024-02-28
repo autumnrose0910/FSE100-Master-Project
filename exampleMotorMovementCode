@@ -1,0 +1,3 @@
+brick.MoveMotor('AD', 50); 
+pause(1); 
+brick.StopMotor('AD', 'Coast');
