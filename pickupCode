@@ -1,0 +1,4 @@
+brick.MoveMotor('AD', 'Coast');
+  pause(1);
+  brick.StopMotor('AD', 'Coast');
+brick.MoveMotorAngleRel('B', 5, 45, 'Brake');
