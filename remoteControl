@@ -6,32 +6,33 @@ while 1
   switch key
     case 'uparrow'
       disp ('Up Arrow Pressed');
-        brick.MoveMotor('AD', 50); 
+        brick.MoveMotor('AD', 20); 
         pause(1); 
         brick.StopMotor('AD', 'Coast'); 
 
     case 'downarrow'
       disp('Down Arrow Pressed');
-        brick.MoveMotor('AD', -50); 
+        brick.MoveMotor('AD', -20); 
         pause(1); 
         brick.StopMotor('AD', 'Coast'); 
 
     case 'leftarrow'
       disp('Left Arrow Pressed');
-        brick.MoveMotor('A', 50); 
-        brick.MoveMotor('D', -50); 
+        brick.MoveMotor('A', -20); 
+        brick.MoveMotor('D', 20); 
         pause(1); 
         brick.StopMotor('AD', 'Coast');
 
     case 'rightarrow'
       disp('Right Arrow Pressed');
-        brick.MoveMotor('A', -50); 
-        brick.MoveMotor('D', 50); 
+        brick.MoveMotor('A', 20); 
+        brick.MoveMotor('D', -20); 
         pause(1); 
         brick.StopMotor('AD', 'Coast');
 
-    case 'q' %press q to quit
+    case 'q'
       break;
   end
 end
 CloseKeyboard();
+
