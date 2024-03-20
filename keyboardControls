@@ -1,0 +1,55 @@
+brick.GyroCalibrate(3);
+angle = brick.GyroAngle(3);
+
+global key
+InitKeyboard();
+
+while 1 
+  pause(0.1);
+  switch key
+    case 'uparrow'
+      disp ('Up Arrow Pressed');
+        brick.MoveMotor('AD', 30); 
+        pause(0.5); 
+        brick.StopMotor('AD', 'Coast'); 
+        display(angle);
+
+    case 'downarrow'
+      disp('Down Arrow Pressed');
+        brick.MoveMotor('AD', -30); 
+        pause(0.5); 
+        brick.StopMotor('AD', 'Coast'); 
+        display(angle);
+
+    case 'leftarrow'
+      disp('Left Arrow Pressed');
+        brick.MoveMotor('A', -30); 
+        brick.MoveMotor('D', 30); 
+        pause(0.5); 
+        brick.StopMotor('AD', 'Coast');
+        display(angle);
+
+    case 'rightarrow'
+      disp('Right Arrow Pressed');
+        brick.MoveMotor('A', 30); 
+        brick.MoveMotor('D', -30); 
+        pause(0.5); 
+        brick.StopMotor('AD', 'Coast');
+        display(angle);
+
+    case 'w' % arm up
+      disp('arm up');
+        brick.MoveMotorAngleRel('B', 2, 45, 'Brake');
+        brick.WaitForMotor('B'); 
+
+    case 's' % arm down
+      disp('arm down');
+        brick.MoveMotorAngleRel('B', 2, -45, 'Brake');
+        brick.WaitForMotor('B'); 
+
+
+    case 'q' %press q to quit
+      break;
+  end
+end
+CloseKeyboard();
