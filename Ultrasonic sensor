@@ -1,0 +1,17 @@
+wallDistance = 10;  % Distance in centimeters
+
+while true
+    % Get distance from ultrasonic sensor
+    distancea = G8.UltrasonicDist(1);
+    
+    if distance <= wallDistance
+        % Move straight if wall is detected
+        brick.MoveMotor('AD', 30);   % Set motors to move forward
+    else
+        % Turn right if no wall is detected
+        brick.MoveMotor('A', 30); 
+        brick.MoveMotor('D', -30);   % Set motors to turn right
+    end
+    
+    pause(0.1);  % Pause for a short duration before next iteration
+end
