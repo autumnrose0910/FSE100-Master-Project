@@ -1,0 +1,14 @@
+while true
+    % Check if the switch is pressed
+    if touch = G8.TouchPressed(4);
+       brick.MoveMotor('AD',-20);
+
+       brick.MoveMotor('A', -30); 
+        brick.MoveMotor('D', 30);  % Set motor to move left
+    else
+        brick.MoveMotor('AD', 50)
+        
+    end
+    
+    pause(0.1);  % Pause for a short duration before next iteration
+end
