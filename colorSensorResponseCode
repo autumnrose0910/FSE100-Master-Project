@@ -1,0 +1,32 @@
+brick.SetColorMode(2, 2);
+while 1
+
+    color = brick.ColorCode(2);
+    display(color);
+    pause(0.1);
+
+    if color == 2 % blue, the area to pick up
+        disp('Arm Up Order working');
+        brick.MoveMotorAngleRel('B', 2, 45, 'Brake');
+        brick.WaitForMotor('B');
+    end
+
+    if color == 3 % green, drop off
+        disp('arm down');
+        brick.MoveMotorAngleRel('B', 2, -45, 'Brake');
+        brick.WaitForMotor('B');
+    end
+
+    if color == 4 % yellow, the color to start pick up program
+        % after finish pick up, the car have to back to this place
+
+        brick.MoveMotor('A', 30);
+        brick.MoveMotor('D', 27);
+        numRightTurns = 0;
+        numLeftTurns = 0;
+    end
+    if color == 5 % red, stop for 1 second
+        pause(1);
+
+    end
+end
