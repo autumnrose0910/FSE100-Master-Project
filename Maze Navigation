@@ -1,0 +1,77 @@
+%{
+Port  1 - touch sensor
+Port 2 - color sensor
+Port 3 - gyro sensor
+Port 4 - sonic sensor
+ 
+Port A -  wheel  motor 
+Port B - arm motor 
+Port D - wheel motor
+%}
+
+brick.SetColorMode(2, 2);
+
+while 1
+    % Move Forward
+    brick.MoveMotor('AD', 50);
+    pause(1.5);
+    
+
+    % get color sensor reading
+    touch = brick.TouchPressed(1);
+    color = brick.ColorCode(2);
+    distance = brick.UltrasonicDist(4);
+
+    % color react
+    if color == 2 || color == 3
+        disp('Read blue/green, running keyboard control');
+        brick.StopMotor('AD', 'Brake');
+        run('kbcontrol');
+        brick.StopMotor('AD', 'Brake');
+        pause(1);
+    end
+
+
+   if color == 4 % yellow, distination
+        disp('Read yellow, stop all actions');
+        brick.MoveMotor('AD', 0);
+        break;
+   end
+
+    if color == 5 % red, stop for 1 second
+        disp('Read red, pause for 1 second');
+        brick.MoveMotor('AD', 0);
+        pause(1);
+        brick.MoveMotor('AD', 50);
+        pause(0.5);
+    end
+
+    % Wall distance
+    if distance > 50
+        pause(0.6);
+        brick.StopMotor('AD', 'Brake');
+        brick.MoveMotor('A', -50);
+        brick.MoveMotor('D', 50);
+        pause(1.02);
+        brick.StopMotor('A', 'Brake');
+        brick.MoveMotor('AD', 70);
+        pause(1.7);
+    end
+
+    if touch % if hit the wall
+        pause(1);
+
+        disp('touched');
+        brick.StopMotor('AD');
+        distance = brick.UltrasonicDist(4);
+        brick.MoveMotor('AD', -70);
+        pause(0.65);
+        brick.MoveMotor('A',50);
+        brick.MoveMotor('D', -50);
+        pause(1.02);
+        brick.StopMotor('AD', 'Brake');
+    end
+ 
+        
+
+end
