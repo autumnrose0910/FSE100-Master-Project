@@ -21,8 +21,8 @@ while 1
 
     % Move Forward
     % Motor D is slower than motor A, so we gives motor D higher value.
-    brick.MoveMotor('A', 50);
-    brick.MoveMotor('D', 50.2);
+    brick.MoveMotor('A', 70);
+    brick.MoveMotor('D', 70);
 
 
     % get color sensor reading
@@ -39,7 +39,7 @@ while 1
         run('kbcontrol');
         brick.StopMotor('AD', 'Brake');
         pause(1);
-        brick.MoveMotor('AD', 50);
+        brick.MoveMotor('AD', 70);
         pause(1);
     end
 
@@ -62,8 +62,8 @@ while 1
         disp('Read red, pause for 1 second');
         brick.MoveMotor('AD', 0);
         pause(1);
-        brick.MoveMotor('A', 50);
-        brick.MoveMotor('D', 50.2);
+        brick.MoveMotor('A', 70);
+        brick.MoveMotor('D', 70);
         pause(0.5);
     end
 
@@ -72,7 +72,7 @@ while 1
         pause(0.6);
         brick.StopMotor('AD', 'Brake');
         brick.MoveMotor('A', -50);
-        brick.MoveMotor('D', 50.2);
+        brick.MoveMotor('D', 50.02);
         pause(1);
         brick.StopMotor('A', 'Brake');
         brick.MoveMotor('AD', 70);
@@ -95,7 +95,7 @@ while 1
 
         % turn right
         brick.MoveMotor('A', 50);
-        brick.MoveMotor('D', -50.2);
+        brick.MoveMotor('D', -50.02);
         pause(1);
         brick.StopMotor('AD', 'Brake');
     end
